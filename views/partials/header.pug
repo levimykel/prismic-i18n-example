@@ -1,0 +1,34 @@
+header.site-header
+  - var i18n = pageContent.i18n
+  - var lang = i18n.lang
+  
+  if lang == 'fr-fr'
+    a(href='/fr-fr')
+      .logo i18n Exemple
+  else if lang == 'es-es'
+    a(href='/es-es')
+      .logo i18n Ejemplo
+  else
+    a(href='/')
+      .logo i18n Example
+  
+  if navContent != null
+    nav
+      ul
+        each link in navContent.getGroup('navigation.menuLinks').toArray()
+          - var linkUrl = ctx.linkResolver(link.getLink("link"), lang)
+          li
+            a(href=linkUrl)
+              != link.getText("label")
+        li 
+          select(name='formal', onchange='javascript:languageLink(this)')
+            option(value="") Language
+            each relatedDoc, lang in i18n.related_documents
+              - var langDisplay = lang
+              if lang == 'en-us'
+                - langDisplay = 'English'
+              else if lang == 'fr-fr'
+                - langDisplay = 'Français'
+              else if lang == 'es-es'
+                - langDisplay = 'Español'
+              option(value=ctx.linkResolver(relatedDoc, lang)) !{langDisplay}

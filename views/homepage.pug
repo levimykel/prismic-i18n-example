@@ -1,0 +1,38 @@
+extends ./layout.pug
+
+block prepend body
+  body.homepage
+    
+    include ./partials/header.pug
+    
+    -// Homepage Banner Section
+    - var bannerImage = pageContent.getImage("homepage.backgroundImage").url
+    section.homepage-banner(style='background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url(' + bannerImage + ')')
+      .banner-content.container
+        h2.banner-title !{pageContent.getText("homepage.title")}
+        p.banner-description !{pageContent.getText("homepage.tagline")}
+        if ( pageContent.getLink("homepage.buttonLink") && pageContent.getText("homepage.buttonText") )
+          - var link = pageContent.getLink("homepage.buttonLink")
+          - var linkText = pageContent.getText("homepage.buttonText")
+          - var lang = pageContent.i18n.lang
+          a.banner-button(href=ctx.linkResolver(link, lang)) !{linkText}
+    
+    -// Content Section
+    div.container
+    
+      -// If there are any slices
+      if pageContent.getSliceZone('homepage.body') !== null
+        
+        -// Display the slices    
+        for slice in pageContent.getSliceZone('homepage.body').slices
+          case slice.sliceType
+            when 'heading'
+              include ./partials/heading.pug
+            when 'textSection'
+              include ./partials/text-section.pug
+            when 'fullWidthImage'
+              include ./partials/full-width-image.pug
+            when 'highlight'
+              include ./partials/highlight.pug
+            when 'gallery'
+              include ./partials/gallery.pug
