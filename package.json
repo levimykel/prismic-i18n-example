@@ -3,7 +3,8 @@
   "version": "2.0.0",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "postinstall": "cd node_modules/prismic-nodejs && npm install prismic.io@3.4.0 --save"
   },
   "dependencies": {
     "body-parser": "~1.0.0",
