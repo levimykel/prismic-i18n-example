@@ -6,6 +6,9 @@
 .content-section {
   margin-bottom: 3.75rem;
 }
+.wio-link {
+  float: right;
+}
 
 /* Header */
 .site-header {
