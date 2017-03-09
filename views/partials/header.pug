@@ -1,6 +1,4 @@
 header.site-header
-  - var i18n = pageContent.i18n
-  - var lang = i18n.lang
   
   if lang == 'fr-fr'
     a(href='/fr-fr')
@@ -16,19 +14,18 @@ header.site-header
     nav
       ul
         each link in navContent.getGroup('navigation.menuLinks').toArray()
-          - var linkUrl = ctx.linkResolver(link.getLink("link"), lang)
+          - var linkUrl = ctx.linkResolver(link.getLink("link"))
           li
             a(href=linkUrl)
               != link.getText("label")
         li 
           select(name='formal', onchange='javascript:languageLink(this)')
             option(value="") Language
-            each relatedDoc, lang in i18n.related_documents
-              - var langDisplay = lang
-              if lang == 'en-us'
+            each doc in pageContent.alternateLanguages
+              if doc.lang == 'en-us'
                 - langDisplay = 'English'
-              else if lang == 'fr-fr'
+              else if doc.lang == 'fr-fr'
                 - langDisplay = 'Français'
-              else if lang == 'es-es'
+              else if doc.lang == 'es-es'
                 - langDisplay = 'Español'
-              option(value=ctx.linkResolver(relatedDoc, lang)) !{langDisplay}
+              option(value=ctx.linkResolver(doc)) !{langDisplay}

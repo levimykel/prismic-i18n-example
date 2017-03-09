@@ -14,8 +14,7 @@ block prepend body
         if ( pageContent.getLink("homepage.buttonLink") && pageContent.getText("homepage.buttonText") )
           - var link = pageContent.getLink("homepage.buttonLink")
           - var linkText = pageContent.getText("homepage.buttonText")
-          - var lang = pageContent.i18n.lang
-          a.banner-button(href=ctx.linkResolver(link, lang)) !{linkText}
+          a.banner-button(href=ctx.linkResolver(link)) !{linkText}
     
     -// Content Section
     div.container
