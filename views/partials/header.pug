@@ -1,9 +1,9 @@
 header.site-header
   
-  if lang == 'fr-fr'
+  if pageContent.lang == 'fr-fr'
     a(href='/fr-fr')
       .logo i18n Exemple
-  else if lang == 'es-es'
+  else if pageContent.lang == 'es-es'
     a(href='/es-es')
       .logo i18n Ejemplo
   else
@@ -14,7 +14,7 @@ header.site-header
     nav
       ul
         each link in navContent.getGroup('navigation.menuLinks').toArray()
-          - var linkUrl = ctx.linkResolver(link.getLink("link"))
+          - var linkUrl = link.getLink("link").url(ctx.linkResolver)
           li
             a(href=linkUrl)
               != link.getText("label")
