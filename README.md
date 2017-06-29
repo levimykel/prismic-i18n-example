@@ -4,7 +4,7 @@ This is a sample multi-language website template with content managed from prism
 
 #### Getting started
 
-Read [this guide](https://prismic.io/docs/examples/website#?lang=node) for instructions on how to create your repository. This multi-language example is based off of the sample website in the guide.
+Read [this guide](https://prismic.io/docs/examples/sample-website#?lang=node) for instructions on how to create your repository. This multi-language example is based off of the sample website in the guide.
 
 Make sure to publish content for each language you need.
 
